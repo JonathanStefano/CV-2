@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Jonathan Stefano</title>
+
+    <!-- Bootstrap 5 CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #1f4e8c;
+            --primary-dark: #14345e;
+            --accent: #f4b942;
+            --soft-bg: #f3f6fb;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+            background-color: var(--soft-bg);
+            color: #2b3340;
+            padding-top: 64px; /* ruang untuk navbar fixed */
+        }
+
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* ---------- Navbar ---------- */
+        .navbar {
+            background-color: var(--primary-dark);
+        }
+
+        .navbar .nav-link {
+            color: rgba(255, 255, 255, .8);
+            font-weight: 500;
+            transition: color .2s;
+        }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link:focus {
+            color: var(--accent);
+        }
+
+        /* ---------- Header / Hero ---------- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #fff;
+            padding: 4rem 0 5rem;
+            text-align: center;
+        }
+
+        .hero .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--primary-dark);
+            font-size: 2.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            border: 5px solid rgba(255, 255, 255, .35);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+        }
+
+        .hero .label {
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            font-size: .8rem;
+            opacity: .75;
+        }
+
+        .hero h2 {
+            font-weight: 700;
+        }
+
+        /* ---------- Section ---------- */
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: .5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--accent);
+        }
+
+        .cv-card {
+            border: 0;
+            border-radius: 1rem;
+            box-shadow: 0 4px 18px rgba(31, 78, 140, .08);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .cv-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 26px rgba(31, 78, 140, .15);
+        }
+
+        .cv-card h3 {
+            color: var(--primary);
+        }
+
+        /* ---------- Tabel ---------- */
+        .table thead th {
+            background-color: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .table-wrap {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(31, 78, 140, .08);
+            background: #fff;
+        }
+
+        .table-wrap .table {
+            margin-bottom: 0;
+        }
+
+        /* ---------- Keahlian & Hobi ---------- */
+        .skill-list li,
+        .hobby-list li {
+            padding: .75rem 1rem;
+            margin-bottom: .6rem;
+            background: #fff;
+            border-radius: .75rem;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 2px 10px rgba(31, 78, 140, .06);
+            list-style: none;
+        }
+
+        .skill-list,
+        .hobby-list {
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .hobby-list {
+            counter-reset: hobi;
+        }
+
+        .hobby-list li {
+            counter-increment: hobi;
+            display: flex;
+            align-items: center;
+        }
+
+        .hobby-list li::before {
+            content: counter(hobi);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            margin-right: .85rem;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* ---------- Kontak ---------- */
+        address {
+            margin: 0;
+        }
+
+        .btn-contact {
+            background-color: var(--primary);
+            color: #fff;
+            border-radius: 2rem;
+            padding: .6rem 1.5rem;
+            word-break: break-all;
+        }
+
+        .btn-contact:hover {
+            background-color: var(--primary-dark);
+            color: var(--accent);
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background-color: var(--primary-dark);
+            color: rgba(255, 255, 255, .8);
+        }
+
+        /* ---------- Mobile ---------- */
+        @media (max-width: 575.98px) {
+            .hero {
+                padding: 3rem 0 3.5rem;
+            }
+
+            .hero .avatar {
+                width: 96px;
+                height: 96px;
+                font-size: 2.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigasi -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#top">Jonathan Stefano</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#menuUtama" aria-controls="menuUtama" aria-expanded="false"
+                aria-label="Buka menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuUtama">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#tentang">Tentang Saya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#data">Data Pribadi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pendidikan">Pendidikan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#keahlian">Keahlian</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hobi">Hobi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="hero" id="top">
+        <div class="container">
+            <div class="avatar">JS</div>
+            <p class="label mb-2">Curriculum Vitae</p>
+            <h1 class="display-5 fw-bold">Jonathan Stefano</h1>
+            <p class="lead mb-0">Mahasiswa Sistem Informasi</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+
+        <!-- Tentang Saya -->
+        <section id="tentang" class="mb-5">
+            <h2 class="section-title">Tentang Saya</h2>
+
+            <article class="card cv-card">
+                <div class="card-body p-4">
+                    <h3 class="h5 fw-bold">Profil</h3>
+                    <p>
+                        Halo, nama saya <strong>Jonathan Stefano</strong>.
+                        Saya adalah mahasiswa Program Studi Sistem Informasi
+                        di Universitas Dian Nuswantoro.
+                    </p>
+                    <p class="mb-0">
+                        Saya memiliki ketertarikan pada teknologi informasi,
+                        pemrograman, dan pengembangan sistem.
+                    </p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Data Pribadi -->
+        <section id="data" class="mb-5">
+            <h2 class="section-title">Data Pribadi</h2>
+
+            <div class="table-wrap">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">Data</th>
+                                <th scope="col">Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nama</td>
+                                <td>Jonathan Stefano</td>
+                            </tr>
+                            <tr>
+                                <td>NIM</td>
+                                <td>A12.2025.07320</td>
+                            </tr>
+                            <tr>
+                                <td>Program Studi</td>
+                                <td>Sistem Informasi</td>
+                            </tr>
+                            <tr>
+                                <td>Universitas</td>
+                                <td>Universitas Dian Nuswantoro</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>Jonathanstevano99@gmail.com</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pendidikan -->
+        <section id="pendidikan" class="mb-5">
+            <h2 class="section-title">Pendidikan</h2>
+
+            <div class="table-wrap">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tahun</th>
+                                <th scope="col">Institusi</th>
+                                <th scope="col">Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025 - Sekarang</td>
+                                <td>Universitas Dian Nuswantoro</td>
+                                <td>Mahasiswa Sistem Informasi</td>
+                            </tr>
+                            <tr>
+                                <td>2022 - 2025</td>
+                                <td>SMA Theresiana 1 Semarang</td>
+                                <td>Lulusan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Keahlian & Hobi berdampingan di desktop -->
+        <div class="row g-4 mb-5">
+            <section id="keahlian" class="col-12 col-md-6">
+                <h2 class="section-title">Keahlian</h2>
+                <ul class="skill-list">
+                    <li><i class="bi bi-translate me-2 text-primary"></i>Bahasa Inggris</li>
+                    <li><i class="bi bi-file-earmark-word me-2 text-primary"></i>Microsoft Office</li>
+                    <li><i class="bi bi-chat-dots me-2 text-primary"></i>Komunikasi</li>
+                </ul>
+            </section>
+
+            <section id="hobi" class="col-12 col-md-6">
+                <h2 class="section-title">Hobi</h2>
+                <ol class="hobby-list">
+                    <li>Touring</li>
+                    <li>Otomotif</li>
+                    <li>Bermain game</li>
+                    <li>Mendengarkan musik</li>
+                </ol>
+            </section>
+        </div>
+
+        <!-- Kontak -->
+        <section id="kontak">
+            <h2 class="section-title">Kontak</h2>
+
+            <div class="card cv-card text-center">
+                <div class="card-body p-4">
+                    <address>
+                        <p class="mb-3 text-muted">Hubungi saya melalui email:</p>
+                        <a class="btn btn-contact" href="mailto:Jonathanstevano99@gmail.com">
+                            <i class="bi bi-envelope-fill me-2"></i>Jonathanstevano99@gmail.com
+                        </a>
+                    </address>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-3">
+        <p class="mb-0">&copy; 2026 Jonathan Stefano</p>
+    </footer>
+
+    <!-- Bootstrap JS (untuk menu hamburger di mobile) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
